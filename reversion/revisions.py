@@ -112,8 +112,13 @@ def get_user():
     return _current_frame().user
 
 
-def set_comment(comment):
+def set_comment(comment: str) -> None:
+    current_frame = _current_frame()
+    current_comment = current_frame.comment.strip()
+    if current_comment and comment:
+        comment = f'{current_comment} | {comment}'
     _update_frame(comment=comment)
+
 
 
 def get_comment():
